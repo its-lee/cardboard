@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--
+		shortcut icon
+		
+		
+	-->
+	
+	<title>cardboard</title>
+	
+	<meta charset="UTF-8">
+	<meta name="description" content="Card game prototyping web app.">
+	<meta name="keywords" content="Cards, Games, Prototyping">
+	<meta name="author" content="Cygnut">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--
+	<link rel="shortcut icon" href="img/content/roteIcon-64x64-Transparent.png" />
+	-->
+	
+	<link href="vendor/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
+	
+	
+	<script src="vendor/jquery-3.1.1.min.js"></script>
+	<script src="vendor/jquery-ui-1.12.1/jquery-ui.js"></script>
+	
+<script>
+
+$(function() {
+	$(".card").draggable({ 
+		cursor: "move",			// use the move compass cursor.
+		containment: "#board", 	// cards must stay in the board.
+		scroll: false,			// don't allow scroll outside of containment.
+		stack: ".card",			// let jquery-ui automatically control the listed elements' z-order to allow stacking.
+		stop: function() {
+			var card = $(this)[0];
+			
+			var id = card.id;
+			var top = card.offsetTop;
+			var left = card.offsetLeft;
+			
+			// TODO: Save these details. Note - on load, position should be corrected.
+			// Alternatively, save position as a % and ensure between 0 & 100!
+			console.log(id + ' @ (' + left + ', ' + top + ')');
+		}
+	});
+});
+
+</script>
+<style>
+
+header {
+	text-align: center;
+}
+
+/* Fill entire viewport */
+
+html, body { 
+	width:100%; 
+	height:100%; 
+	margin:0; 
+}
+
+.board-container {
+	background-color: black;
+	width: 100%;
+	height: 100%;
+}
+
+#board {
+	width: 98%;
+	height: 98%;
+	
+	position: relative;
+	left: 1%; top: 1%;
+	
+	background-image: url("img/layout/cartoon-wood-background.png");
+	background-repeat: repeat;
+	
+	border-radius: 5%;
+	box-shadow: 0px 0px 10px 10px black inset;
+}
+
+.card {
+	/* Permanent - not user configurable. */
+	position: relative;
+	background-color: white;
+	border: solid;
+	border-radius: 10%;
+	
+	/* Configurable by user. */
+	width: 50px;
+	height: 50px;
+}
+
+</style>
+</head>
+<body ng-app="cardboard">
+
+<div class="board-container">
+	<div id="board">
+		<div id="card-1" class="card"><h1>A</h1></div>
+		<div id="card-2" class="card"><h1>B</h1></div>
+		<div id="card-3" class="card"><h1>C</h1></div>
+	</div>
+</div>
+
+</body>
+</html>
