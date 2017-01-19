@@ -5,6 +5,12 @@
 		shortcut icon
 		
 		
+			Move everything to local (get rid of server)
+			Make github project use the index.html as published web page.
+			Store card info in local storage
+			Allow import/export.
+		
+		
 	-->
 	
 	<title>cardboard</title>
@@ -21,31 +27,19 @@
 	
 	<link href="vendor/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
 	
-	
+		<!-- Angular & linked Bootstrap libs -->
 	<script src="vendor/jquery-3.1.1.min.js"></script>
 	<script src="vendor/jquery-ui-1.12.1/jquery-ui.js"></script>
+	<script src="vendor/angular.min-1.5.7.js"></script>
+	<script src="vendor/ui-bootstrap-tpls-2.4.0.js"></script>
+	<script src="vendor/bootstrap-3.3.7/js/bootstrap.js"/></script>
+	
+	<!-- Angular model -->
+	<script src="scripts/app.js"></script>
+	<script src="scripts/services/cardboardService.js"></script>
+	<script src="scripts/controllers/board.js"></script>
 	
 <script>
-
-$(function() {
-	$(".card").draggable({ 
-		cursor: "move",			// use the move compass cursor.
-		containment: "#board", 	// cards must stay in the board.
-		scroll: false,			// don't allow scroll outside of containment.
-		stack: ".card",			// let jquery-ui automatically control the listed elements' z-order to allow stacking.
-		stop: function() {
-			var card = $(this)[0];
-			
-			var id = card.id;
-			var top = card.offsetTop;
-			var left = card.offsetLeft;
-			
-			// TODO: Save these details. Note - on load, position should be corrected.
-			// Alternatively, save position as a % and ensure between 0 & 100!
-			console.log(id + ' @ (' + left + ', ' + top + ')');
-		}
-	});
-});
 
 </script>
 <style>
@@ -74,6 +68,7 @@ html, body {
 	
 	position: relative;
 	left: 1%; top: 1%;
+	overflow: auto;
 	
 	background-image: url("img/layout/cartoon-wood-background.png");
 	background-repeat: repeat;
@@ -84,25 +79,36 @@ html, body {
 
 .card {
 	/* Permanent - not user configurable. */
-	position: relative;
+	position: absolute;
 	background-color: white;
 	border: solid;
 	border-radius: 10%;
 	
 	/* Configurable by user. */
-	width: 50px;
-	height: 50px;
+	width: 100px;
+	height: 100px;
 }
 
 </style>
 </head>
 <body ng-app="cardboard">
 
-<div class="board-container">
+<div ng-controller="board" class="board-container">
 	<div id="board">
-		<div id="card-1" class="card"><h1>A</h1></div>
-		<div id="card-2" class="card"><h1>B</h1></div>
-		<div id="card-3" class="card"><h1>C</h1></div>
+		<div 
+			ng-attr-id="{{ 'card-' + c.id }}" 
+			ng-attr-card-id="{{ c.id }}" 
+			draggable="true" 
+			on-move-stop="onMoveStop(id, left, top)" 
+			class="card" 
+			ng-repeat="c in cards"
+			ng-style="{
+				left: c.left,
+				top: c.top
+			}">
+			<h1>{{ c.title }}</h1>
+			<p>{{ c.content }}</p>
+		</div>
 	</div>
 </div>
 
