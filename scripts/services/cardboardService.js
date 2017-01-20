@@ -45,7 +45,7 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 			? 
 			0 
 			: 
-			(_.max(this.cardboard.cards, function(c) { return c.id; }) + 1);
+			(_.max(this.cardboard.cards, function(c) { return c.id; }).id + 1);
 		
 		this.cardboard.cards.push({
 			id: newId,
