@@ -5,7 +5,7 @@
 angular.module('cardboard').controller('board', ['$scope', 'cardboardService', 'modalService', 
 function($scope, cardboardService, modalService) {
 	
-	const modalTemplateUrl = '/../../partials/card-modal.html';
+	const modalTemplateUrl = 'partials/card-modal.html';
 	
 	$scope.addCard = function() {
 		modalService.showModal({
@@ -50,7 +50,7 @@ function($scope, cardboardService, modalService) {
 		if (c)
 		{
 			modalService.showModal({
-				templateUrl: '/../../partials/delete-card-modal.html'
+				templateUrl: 'partials/delete-card-modal.html'
 			}, {})
 			.then(function(result) {
 				cardboardService.deleteCard(c.id);
