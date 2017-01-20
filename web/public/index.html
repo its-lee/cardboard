@@ -7,14 +7,12 @@
 		
 			Move everything to local (get rid of server)
 			Make github project use the index.html as published web page.
-			Store card info in local storage
 			Allow import/export.
 			
 			Style top bar for adding, etc
 			
-			allow deletion of cards
-			
-			save position of cards.
+			Only show ui panel for:
+				adding, editing and deleting cards WHEN edit mode on.
 	-->
 	
 	<title>cardboard</title>
@@ -62,9 +60,9 @@ header {
 /* Fill entire viewport */
 
 html, body { 
-	width:100%; 
-	height:100%; 
-	margin:0; 
+	width: 100%; 
+	height: 100%; 
+	margin: 0; 
 }
 
 .board-container {
@@ -100,6 +98,11 @@ html, body {
 	height: 100px;
 }
 
+.card.selected {
+	border: solid;
+	border-width: 5px;
+	border-color: blue;
+}
 </style>
 </head>
 <body ng-app="cardboard">
@@ -107,7 +110,17 @@ html, body {
 <div ng-controller="board" class="board-container">
 	
 	<div id="board">
-		<button ng-click="addCard();">+</button>
+		
+		<header>
+			<div class="btn-group" data-toggle="buttons">
+				<label class="btn btn-primary" ng-click="editClick()">
+					<input type="checkbox">Edit Mode</input>
+				</label>
+			</div>
+			<button class="btn btn-primary" ng-click="addCard();">Add</button>
+			<button class="btn btn-primary" ng-click="editCard();">Edit</button>
+			<button class="btn btn-primary" ng-click="deleteCard();">Delete</button>
+		</header>
 		
 		<div 
 			ng-attr-id="{{ 'card-' + c.id }}" 
@@ -119,10 +132,14 @@ html, body {
 			ng-style="{
 				left: c.left,
 				top: c.top
-			}">
+			}"
+			ng-class="{
+				'selected': c.id === selectedCardId
+			}"
+			ng-click="cardClick(c);"
+			>
 			<h1>{{ c.title }}</h1>
 			<p>{{ c.content }}</p>
-			<button ng-click="editCard(c);">Edit</button>
 		</div>
 	</div>
 </div>
