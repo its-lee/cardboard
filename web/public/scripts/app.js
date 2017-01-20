@@ -1,1 +1,1 @@
-angular.module('cardboard', ['ui.bootstrap']);
+angular.module('cardboard', ['ui.bootstrap', 'LocalStorageModule']);

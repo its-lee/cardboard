@@ -9,8 +9,12 @@
 			Make github project use the index.html as published web page.
 			Store card info in local storage
 			Allow import/export.
-		
-		
+			
+			Style top bar for adding, etc
+			
+			allow deletion of cards
+			
+			save position of cards.
 	-->
 	
 	<title>cardboard</title>
@@ -24,20 +28,26 @@
 	<!--
 	<link rel="shortcut icon" href="img/content/roteIcon-64x64-Transparent.png" />
 	-->
-	
+	<!--
 	<link href="vendor/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
+	-->
 	
 		<!-- Angular & linked Bootstrap libs -->
+	<script src="vendor/underscore-1.8.3.js"></script>
 	<script src="vendor/jquery-3.1.1.min.js"></script>
 	<script src="vendor/jquery-ui-1.12.1/jquery-ui.js"></script>
 	<script src="vendor/angular.min-1.5.7.js"></script>
 	<script src="vendor/ui-bootstrap-tpls-2.4.0.js"></script>
 	<script src="vendor/bootstrap-3.3.7/js/bootstrap.js"/></script>
+	<script src="vendor/angular-local-storage-0.5.0.js"></script>
 	
 	<!-- Angular model -->
 	<script src="scripts/app.js"></script>
 	<script src="scripts/services/cardboardService.js"></script>
+	<script src="scripts/services/modalService.js"></script>
 	<script src="scripts/controllers/board.js"></script>
+	
+	<link rel="stylesheet" href="vendor/bootstrap-3.3.7/css/bootstrap.css"/>
 	
 <script>
 
@@ -94,12 +104,15 @@ html, body {
 <body ng-app="cardboard">
 
 <div ng-controller="board" class="board-container">
+	
 	<div id="board">
+		<button ng-click="addCard();">+</button>
+		
 		<div 
 			ng-attr-id="{{ 'card-' + c.id }}" 
 			ng-attr-card-id="{{ c.id }}" 
 			draggable="true" 
-			on-move-stop="onMoveStop(id, left, top)" 
+			on-move-stop="onMoveStop(attrs, left, top)" 
 			class="card" 
 			ng-repeat="c in cards"
 			ng-style="{
@@ -108,6 +121,7 @@ html, body {
 			}">
 			<h1>{{ c.title }}</h1>
 			<p>{{ c.content }}</p>
+			<button ng-click="editCard(c);">Edit</button>
 		</div>
 	</div>
 </div>

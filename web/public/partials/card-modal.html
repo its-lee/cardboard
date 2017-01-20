@@ -1,0 +1,18 @@
+<div class="modal-header">
+	<h3>{{ modalOptions.modalTitle }}</h3>
+</div>
+<div class="modal-body">
+	<form>
+		<label>Title</label><br/>
+		<input type="text" ng-model="modalOptions.title" style="min-width: 100%; max-width: 100%"></input><br/>
+		<br/>
+		<label>Content</label><br/>
+		<textarea ng-model="modalOptions.content" style="min-width: 100%; max-width: 100%"></textarea>
+	</form>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn" 
+			data-ng-click="modalOptions.close()">Close</button>
+	<button class="btn btn-primary" 
+			data-ng-click="modalOptions.ok();">OK</button>
+</div>
