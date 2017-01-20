@@ -7,32 +7,6 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 	// public:
 	
 	/*
-	this.cards = [
-		{
-			id: 1,
-			left: 10,
-			top: 10,
-			title: "card1",
-			content: "card1-content"
-		},
-		{
-			id: 2,
-			left: 50,
-			top: 10,
-			title: "card2",
-			content: "card2-content"
-		},
-		{
-			id: 3,
-			left: 40,
-			top: 30,
-			title: "card3",
-			content: "card3-content"
-		}
-	];
-	*/
-	
-	/*
 		args = {
 			id,
 			left,
