@@ -2,7 +2,7 @@
 	Tracking position with draggable in angular.
 	http://stackoverflow.com/questions/15470666/angularjs-directive-attribute-binding-left-top-positions-after-dragging-with-ng
 */
-angular.module('cardboard').controller('board', ['$scope', 'cardboardService', 'modalService', 
+angular.module('cardboard').controller('cards', ['$scope', 'cardboardService', 'modalService', 
 function($scope, cardboardService, modalService) {
 	
 	const modalTemplateUrl = 'partials/card-modal.html';

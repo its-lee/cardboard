@@ -3,10 +3,13 @@
 <head>
 	<!--
 		shortcut icon
-		
-		
-			Move everything to local (get rid of server)
-			Make github project use the index.html as published web page.
+			
+			Ensure every card is in a deck.
+			ui for editing deck.
+			Show all decks.
+			
+			Case where you delete a deck which has linked cards. Should warn and delete all linked cards.
+			
 			Allow import/export.
 			
 			Style top bar for adding, etc
@@ -47,6 +50,7 @@
 	<script src="scripts/services/modalService.js"></script>
 	<script src="scripts/directives/draggable.js"></script>
 	<script src="scripts/controllers/cards.js"></script>
+	<script src="scripts/controllers/decks.js"></script>
 	
 	<link rel="stylesheet" href="vendor/bootstrap-3.3.7/css/bootstrap.css"/>
 	
@@ -123,9 +127,13 @@ nav.navbar {
 .tab-pane {
 	padding: 10px;
 }
+
+.editable-tr {
+	cursor: pointer;
+}
 </style>
 </head>
-<body ng-app="cardboard" ng-controller="board">
+<body ng-app="cardboard" ng-controller="cards">
 
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
@@ -159,8 +167,18 @@ nav.navbar {
 					<button class="btn btn-primary" ng-disabled="!editMode" ng-click="deleteCard();">Delete</button>
 				</div>
 				
-				<div class="tab-pane fade in" id="decks">
-					Eat me :3 :o :c
+				<div ng-controller="decks" class="tab-pane fade in" id="decks">
+					<table class="table">
+						<tr>
+							<th>Name</th>
+							<th>Description</th>
+						</tr>
+						<tr ng-repeat="d in decks" ng-click="editDeck(d);" class="editable-tr">
+							<td>{{ d.name }}</td>
+							<td>{{ d.description }}</td>
+						</tr>
+					</table>
+					<button class="btn btn-primary" ng-click="addDeck();">Add New Deck</button>
 				</div>
 				
 			</div>
