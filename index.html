@@ -4,15 +4,15 @@
 	<!--
 		shortcut icon
 			
-			Ensure every card is in a deck.
-			ui for editing deck.
 			Show all decks.
-			
 			Case where you delete a deck which has linked cards. Should warn and delete all linked cards.
+			
+			Style cards.
 			
 			Allow import/export.
 			
 			Style top bar for adding, etc
+			Tidy up all header elements!
 			
 			Only show ui panel for:
 				adding, editing and deleting cards WHEN edit mode on.
@@ -164,7 +164,7 @@ nav.navbar {
 					
 					<button class="btn btn-primary" ng-disabled="!editMode" ng-click="addCard();">Add</button>
 					<button class="btn btn-primary" ng-disabled="!editMode" ng-click="editCard();">Edit</button>
-					<button class="btn btn-primary" ng-disabled="!editMode" ng-click="deleteCard();">Delete</button>
+					<button class="btn btn-danger" ng-disabled="!editMode" ng-click="deleteCard();">Delete</button>
 				</div>
 				
 				<div ng-controller="decks" class="tab-pane fade in" id="decks">

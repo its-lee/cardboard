@@ -12,10 +12,13 @@ function($scope, cardboardService, modalService) {
 			templateUrl: modalTemplateUrl
 		}, {
 			modalTitle: 'Add Card',
-			left: 20,
-			top: 20
+			left: 30,
+			top: 100,
+			decks: cardboardService.decks,
+			defaultDeck: cardboardService.defaultDeck,
 		})
 		.then(function(result) {
+			result.deck_id = result.selectedDeck.id;
 			cardboardService.addCard(result);
 		});
 	}
@@ -37,9 +40,13 @@ function($scope, cardboardService, modalService) {
 				left: c.left,
 				top: c.top,
 				title: c.title,
-				content: c.content
+				content: c.content,
+				decks: cardboardService.decks,
+				defaultDeck: cardboardService.defaultDeck,
+				selectedDeck: _.find(cardboardService.decks, function(d) { return d.id === c.deck_id; })
 			})
 			.then(function(result) {
+				result.deck_id = result.selectedDeck.id;
 				cardboardService.updateCard(result);
 			});
 		}

@@ -6,6 +6,14 @@
 		<label>Title</label><br/>
 		<input type="text" ng-model="modalOptions.title" style="min-width: 100%; max-width: 100%"></input><br/>
 		<br/>
+		<label>Deck</label><br/>
+		<select 
+			ng-init="modalOptions.selectedDeck = modalOptions.selectedDeck || modalOptions.defaultDeck || modalOptions.decks[0]"
+			ng-model="modalOptions.selectedDeck"
+			ng-options="deck as deck.name for deck in modalOptions.decks track by deck.id" 
+		/>
+		<br/>
+		<br/>
 		<label>Content</label><br/>
 		<textarea ng-model="modalOptions.content" style="min-width: 100%; max-width: 100%"></textarea>
 	</form>
