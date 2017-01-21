@@ -78,19 +78,9 @@ function($scope, cardboardService, modalService) {
 	}
 	
 	$scope.editClick = function() {
-		if ($scope.editMode)
-		{
-			$scope.selectedCardId = null;
-			// Leaving edit mode.
-			// Remove any ui highlighting and selected booleans.
-		}
-		else
-		{
-			$scope.selectedCardId = null;
-			// Entering edit mode.
-			// Ensure nothing selected.
-		}
-		
+		// When changing mode, ensure that no card is now selected;
+		$scope.selectedCardId = null;
+		// Switch mode.
 		$scope.editMode = !$scope.editMode;
 	}
 	

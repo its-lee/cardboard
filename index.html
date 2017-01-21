@@ -44,7 +44,7 @@
 	<script src="scripts/services/cardboardService.js"></script>
 	<script src="scripts/services/modalService.js"></script>
 	<script src="scripts/directives/draggable.js"></script>
-	<script src="scripts/controllers/board.js"></script>
+	<script src="scripts/controllers/cards.js"></script>
 	
 	<link rel="stylesheet" href="vendor/bootstrap-3.3.7/css/bootstrap.css"/>
 	
@@ -103,25 +103,73 @@ html, body {
 	border-width: 5px;
 	border-color: blue;
 }
+
+nav.navbar {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	
+	position: fixed;
+	width: 100%;
+	z-index: 1000;	/* Ensure on a layer above cards on the board. */
+	opacity: 0.85;
+}
+
+.modal-dialog {
+	z-index: 2000;	/* Ensure on a layer above cards & the nav */
+}
+
+.tab-pane {
+	padding: 5px;
+}
 </style>
 </head>
-<body ng-app="cardboard">
+<body ng-app="cardboard" ng-controller="board">
 
-<div ng-controller="board" class="board-container">
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section">
+				<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+			</button>
+		</div>
+		
+		<div class="navbar-collapse collapse" id="navbar-collapse-section">
+			
+			<div>
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#editor">Editor</a></li>
+					<li><a data-toggle="tab" href="#decks">Decks</a></li>
+				</ul>
+			</div>
+			
+			<div class="tab-content">
+				
+				<div class="tab-pane fade in active" id="editor">
+					
+					<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary" ng-click="editClick()">
+							<input type="checkbox">Edit Mode</input>
+						</label>
+					</div>
+					
+					<button class="btn btn-primary" ng-click="addCard();">Add</button>
+					<button class="btn btn-primary" ng-click="editCard();">Edit</button>
+					<button class="btn btn-primary" ng-click="deleteCard();">Delete</button>
+					
+				</div>
+				
+				<div class="tab-pane fade in" id="decks">
+					Eat me :3 :o :c
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</nav>
+
+<div class="container-fluid board-container">
 	
 	<div id="board">
-		
-		<header>
-			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-primary" ng-click="editClick()">
-					<input type="checkbox">Edit Mode</input>
-				</label>
-			</div>
-			<button class="btn btn-primary" ng-click="addCard();">Add</button>
-			<button class="btn btn-primary" ng-click="editCard();">Edit</button>
-			<button class="btn btn-primary" ng-click="deleteCard();">Delete</button>
-		</header>
-		
 		<div 
 			ng-attr-id="{{ 'card-' + c.id }}" 
 			ng-attr-card-id="{{ c.id }}" 
