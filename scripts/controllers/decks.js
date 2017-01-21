@@ -15,6 +15,9 @@ function($scope, cardboardService, modalService) {
 	}
 	
 	$scope.editDeck = function(d) {
+		if (cardboardService.isDeckReserved(d))
+			return alert("Nope, you can't modify reserved decks, pup.");
+		
 		modalService.showModal({
 			templateUrl: modalTemplateUrl
 		}, {
@@ -32,5 +35,5 @@ function($scope, cardboardService, modalService) {
 		});
 	}
 	
-	$scope.decks = cardboardService.cardboard.decks;
+	$scope.decks = cardboardService.decks;
 }]);

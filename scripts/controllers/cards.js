@@ -86,6 +86,6 @@ function($scope, cardboardService, modalService) {
 	
 	$scope.selectedCardId = null;
 	$scope.editMode = false;
-	$scope.cards = cardboardService.cardboard.cards;
+	$scope.cards = cardboardService.cards;
 	
 }]);
