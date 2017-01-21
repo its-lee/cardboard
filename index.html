@@ -13,6 +13,8 @@
 			
 			Only show ui panel for:
 				adding, editing and deleting cards WHEN edit mode on.
+			
+			Use http://www.bootstraptoggle.com/ ?
 	-->
 	
 	<title>cardboard</title>
@@ -119,7 +121,7 @@ nav.navbar {
 }
 
 .tab-pane {
-	padding: 5px;
+	padding: 10px;
 }
 </style>
 </head>
@@ -152,10 +154,9 @@ nav.navbar {
 						</label>
 					</div>
 					
-					<button class="btn btn-primary" ng-click="addCard();">Add</button>
-					<button class="btn btn-primary" ng-click="editCard();">Edit</button>
-					<button class="btn btn-primary" ng-click="deleteCard();">Delete</button>
-					
+					<button class="btn btn-primary" ng-disabled="!editMode" ng-click="addCard();">Add</button>
+					<button class="btn btn-primary" ng-disabled="!editMode" ng-click="editCard();">Edit</button>
+					<button class="btn btn-primary" ng-disabled="!editMode" ng-click="deleteCard();">Delete</button>
 				</div>
 				
 				<div class="tab-pane fade in" id="decks">
