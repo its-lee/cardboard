@@ -7,7 +7,7 @@ function($scope, cardboardService, modalService) {
 	
 	const modalTemplateUrl = 'partials/card-modal.html';
 	
-	$scope.addCard = function() {
+	function addCard() {
 		modalService.showModal({
 			templateUrl: modalTemplateUrl
 		}, {
@@ -23,13 +23,12 @@ function($scope, cardboardService, modalService) {
 		});
 	}
 	
-	function getSelectedCard()
-	{
-		return _.find($scope.cards, function(c) { return c.id === $scope.selectedCardId; });
+	function findCardById(id) {
+		return _.find($scope.cards, function(c) { return c.id === id; });
 	}
 	
-	$scope.editCard = function() {
-		var c = getSelectedCard();
+	function editCard(id) {
+		var c = findCardById(id);
 		if (c)
 		{
 			modalService.showModal({
@@ -52,8 +51,8 @@ function($scope, cardboardService, modalService) {
 		}
 	}
 	
-	$scope.deleteCard = function() {
-		var c = getSelectedCard();
+	function deleteCard(id) {
+		var c = findCardById(id);
 		if (c)
 		{
 			modalService.showModal({
@@ -73,26 +72,16 @@ function($scope, cardboardService, modalService) {
 		});
 	}
 	
-	$scope.cardClick = function(card) {
-		if ($scope.editMode) {
-			// If clicking on an already selected card, then unselect it.
-			if (card.id === $scope.selectedCardId)
-				$scope.selectedCardId = null;
-			else
-				// If another card is clicked on, then select it.
-				$scope.selectedCardId = card.id;
+	$scope.onContextClick = function(option, id) {
+		//var id = attrs["card-id"]
+		
+		switch (option) {
+			case "add": addCard(); break;
+			case "edit": editCard(id); break;
+			case "delete": deleteCard(id); break;
 		}
 	}
 	
-	$scope.editClick = function() {
-		// When changing mode, ensure that no card is now selected;
-		$scope.selectedCardId = null;
-		// Switch mode.
-		$scope.editMode = !$scope.editMode;
-	}
-	
-	$scope.selectedCardId = null;
-	$scope.editMode = false;
 	$scope.cards = cardboardService.cards;
 	
 }]);

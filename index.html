@@ -4,12 +4,19 @@
 	<!--
 		shortcut icon
 			
+			Filter by deck/decks.
+			
+			Issue where add context menu  then don't left click leads it to still show an add context if click on a card (i.e. different z-index)
+				maybe just have a button to add a card instead!
+			
 			Show all decks.
 			Case where you delete a deck which has linked cards. Should warn and delete all linked cards.
 			
 			Filter by decks.
 			Search by card name.
 			'Draw x random cards from this deck'
+			
+			Add card at position clicked.
 			
 			Style cards.
 			
@@ -43,6 +50,7 @@
 	<script src="vendor/underscore-1.8.3.js"></script>
 	<script src="vendor/jquery-3.1.1.min.js"></script>
 	<script src="vendor/jquery-ui-1.12.1/jquery-ui.js"></script>
+	<script src="vendor/jquery-contextmenu-2.4.2/jquery.contextMenu.js"></script>
 	<script src="vendor/angular.min-1.5.7.js"></script>
 	<script src="vendor/ui-bootstrap-tpls-2.4.0.js"></script>
 	<script src="vendor/bootstrap-3.3.7/js/bootstrap.js"/></script>
@@ -53,9 +61,11 @@
 	<script src="scripts/services/cardboardService.js"></script>
 	<script src="scripts/services/modalService.js"></script>
 	<script src="scripts/directives/draggable.js"></script>
+	<script src="scripts/directives/contextMenu.js"></script>
 	<script src="scripts/controllers/cards.js"></script>
 	<script src="scripts/controllers/decks.js"></script>
 	
+	<link rel="stylesheet" href="vendor/jquery-contextmenu-2.4.2/jquery.contextMenu.css"/>
 	<link rel="stylesheet" href="vendor/bootstrap-3.3.7/css/bootstrap.css"/>
 	
 <script>
@@ -102,6 +112,8 @@ html, body {
 	background-color: white;
 	border: solid;
 	border-radius: 10%;
+	
+	text-align: center
 	
 	/* Configurable by user. */
 	width: 100px;
@@ -151,25 +163,14 @@ nav.navbar {
 			
 			<div>
 				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#editor">Editor</a></li>
+					<li class="active"><a data-toggle="tab" href="#home">Home</a></li>
 					<li><a data-toggle="tab" href="#decks">Decks</a></li>
 				</ul>
 			</div>
 			
 			<div class="tab-content">
 				
-				<div class="tab-pane fade in active" id="editor">
-					
-					<div class="btn-group" data-toggle="buttons">
-						<label class="btn btn-primary" ng-click="editClick()">
-							<input type="checkbox">Edit Mode</input>
-						</label>
-					</div>
-					
-					<button class="btn btn-primary" ng-disabled="!editMode" ng-click="addCard();">Add</button>
-					<button class="btn btn-primary" ng-disabled="!editMode" ng-click="editCard();">Edit</button>
-					<button class="btn btn-danger" ng-disabled="!editMode" ng-click="deleteCard();">Delete</button>
-				</div>
+				<div id="home"></div>
 				
 				<div ng-controller="decks" class="tab-pane fade in" id="decks">
 					<table class="table">
@@ -192,6 +193,23 @@ nav.navbar {
 
 <div class="container-fluid board-container">
 	
+	<context-menu
+		selector="#board"
+		items='{
+			"add": { "name": "Add", "icon": "add" }
+		}'
+		on-context-click="onContextClick(option, id)"
+		/>
+	
+	<context-menu
+		selector=".card"
+		items='{
+			"edit": { "name": "Edit", "icon": "edit" },
+			"delete": { "name": "Delete", "icon": "delete" }
+		}'
+		on-context-click="onContextClick(option, id)"
+		/>
+	
 	<div id="board">
 		<div 
 			ng-attr-id="{{ 'card-' + c.id }}" 
@@ -210,6 +228,7 @@ nav.navbar {
 			ng-click="cardClick(c);"
 			>
 			<h1>{{ c.title }}</h1>
+			<hr/>
 			<p>{{ c.content }}</p>
 		</div>
 	</div>
