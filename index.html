@@ -12,7 +12,6 @@
 				maybe just have a button to add a card instead!
 			
 			Show all decks.
-			Case where you delete a deck which has linked cards. Should warn and delete all linked cards.
 			
 			Filter by decks.
 			Search by card name.
@@ -122,12 +121,6 @@ html, body {
 	height: 100px;
 }
 
-.card.selected {
-	border: solid;
-	border-width: 5px;
-	border-color: blue;
-}
-
 nav.navbar {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
@@ -144,6 +137,11 @@ nav.navbar {
 
 .editable-tr {
 	cursor: pointer;
+}
+
+.tab-pane button {
+	margin: 5px 0 5px 0;
+	float: right;
 }
 </style>
 </head>
