@@ -22,6 +22,7 @@ function($scope, cardboardService, modalService) {
 			id: d.id,
 			name: d.name,
 			description: d.description,
+			card_count: cardboardService.getCardsInDeck(d.id).length,
 			remove: false
 		})
 		.then(function(result) {

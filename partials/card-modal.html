@@ -3,18 +3,15 @@
 </div>
 <div class="modal-body">
 	<form>
-		<label>Title</label><br/>
-		<input type="text" ng-model="modalOptions.title" style="min-width: 100%; max-width: 100%"></input><br/>
-		<br/>
-		<label>Deck</label><br/>
+		<label>Title</label>
+		<input type="text" ng-model="modalOptions.title" style="min-width: 100%; max-width: 100%"></input>
+		<label>Deck</label>
 		<select 
 			ng-init="modalOptions.selectedDeck = modalOptions.selectedDeck || modalOptions.defaultDeck || modalOptions.decks[0]"
 			ng-model="modalOptions.selectedDeck"
 			ng-options="deck as deck.name for deck in modalOptions.decks track by deck.id" 
 		/>
-		<br/>
-		<br/>
-		<label>Content</label><br/>
+		<label>Content</label>
 		<textarea ng-model="modalOptions.content" style="min-width: 100%; max-width: 100%"></textarea>
 	</form>
 </div>

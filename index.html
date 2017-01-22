@@ -4,6 +4,10 @@
 	<!--
 		shortcut icon
 			
+			Fixed height for decks ui. Scrollable.
+			Card table ui.
+			Hide/Show cards.
+			
 			Filter by deck/decks.
 			
 			Scrollable deck pane when too big.
@@ -133,6 +137,16 @@ nav.navbar {
 
 .modal-dialog {
 	z-index: 2000;	/* Ensure on a layer above cards & the nav */
+}
+
+.modal-body label, .modal-body input, .modal-body select, .modal-body textarea{
+	display: block;
+	margin-top: 7px;
+	margin-bottom: 7px;
+}
+
+.modal-body .panel {
+	margin-bottom: 5px;
 }
 
 .editable-tr {

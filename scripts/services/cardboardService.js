@@ -83,20 +83,17 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 		if (isDeckReserved(id))
 			return alert("Nope, you can't modify reserved decks, pup.");
 		
-		// Find all cards in this deck.
-		var cards = _.filter(this.cards, function(c) { return c.deck_id === id; });
-		if (cards.length > 0)
-		{
-			if (!confirm("Deleting this deck will also delete its " + cards.length + " card(s). Continue?"))
-				return;	// We're done.
-			
-			// Delete all referenced cards.
-			_.each(cards, function(c) { this.deleteCard(c.id); }, this);
-		}
+		// Delete all referenced cards.
+		var cards = this.getCardsInDeck(id);
+		_.each(cards, function(c) { this.deleteCard(c.id); }, this);
 		
 		var idx = findIndexById(this.decks, id);
 		if (idx >= 0) this.decks.splice(idx, 1);
 		this.save();
+	}
+	
+	this.getCardsInDeck = function(id) {
+		return _.filter(this.cards, function(c) { return c.deck_id === id; });
 	}
 	
 	/*
