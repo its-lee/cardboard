@@ -7,15 +7,7 @@
 		<input type="text" ng-model="modalOptions.name" style="min-width: 100%; max-width: 100%"></input>
 		<label>Description</label>
 		<textarea ng-model="modalOptions.description" style="min-width: 100%; max-width: 100%"></textarea>
-		<div class="checkbox" ng-style="{ display: modalOptions.id === undefined ? 'none' : 'block' }">
-			<label>
-				<input type="checkbox" ng-model="modalOptions.remove">Delete?
-			</label>
-		</div>
-		<div class="panel panel-warning" ng-style="{ display: (modalOptions.card_count || 0) === 0 ? 'none' : 'block' }">
-			<div class="panel-heading">Warning</div>
-			<div class="panel-body">This will delete all {{ modalOptions.card_count }} card(s) in this deck.</div>
-		</div>
+	</form>
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn" 

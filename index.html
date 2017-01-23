@@ -212,11 +212,13 @@ nav.navbar {
 							<th></th>
 							<th></th>
 							<th></th>
+							<th></th>
 						</tr>
 						<tr ng-repeat="d in decks">
 							<td>{{ d.name }}</td>
 							<td>{{ d.description }}</td>
 							<td><button class="btn btn-primary" ng-click="editDeck(d);">Edit</button></td>
+							<td><button class="btn btn-danger" ng-click="deleteDeck(d);">Delete</button></td>
 							<td><button class="btn" ng-click="hideAll(d, true);">Hide All</button></td>
 							<td><button class="btn" ng-click="hideAll(d, false);">Show All</button></td>
 						</tr>

@@ -22,14 +22,20 @@ function($scope, cardboardService, modalService) {
 			id: d.id,
 			name: d.name,
 			description: d.description,
-			card_count: cardboardService.getCardsInDeck(d.id).length,
-			remove: false
 		})
 		.then(function(result) {
-			if (result.remove)
-				cardboardService.deleteDeck(result.id);
-			else
-				cardboardService.updateDeck(result);
+			cardboardService.updateDeck(result);
+		});
+	}
+	
+	$scope.deleteDeck = function(d) {
+		modalService.showModal({
+			templateUrl: 'partials/delete-deck-modal.html'
+		}, {
+			card_count: cardboardService.getCardsInDeck(d.id).length,
+		})
+		.then(function(result) {
+			cardboardService.deleteDeck(d.id);
 		});
 	}
 	
