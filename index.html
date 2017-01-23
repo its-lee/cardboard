@@ -4,9 +4,6 @@
 	<!--
 			Put something on the Home tab (filter card-board by search)
 			
-			Decks:
-				Tidy up deck table.
-			
 			Cards-table:
 				Search by card name.
 			
@@ -155,6 +152,11 @@ nav.navbar {
 .table-tab {
 	max-height: 200px;
 	overflow: auto;
+}
+
+/* We need to be as specific as possible with our selector here to beat the bootstrap selector! */
+.table > tbody > tr > td {
+	vertical-align: middle;
 }
 
 </style>
