@@ -3,7 +3,6 @@
 <head>
 	<!--
 			Put something on the Home tab (filter card-board by search)
-			Fix positioning of (Delete?) checkbox
 			
 			Decks:
 				Per deck: Show/Hide all cards in that deck.
@@ -135,7 +134,10 @@ nav.navbar {
 	z-index: 2000;	/* Ensure on a layer above cards & the nav. */
 }
 
-.modal-body label, .modal-body input, .modal-body select, .modal-body textarea{
+.modal-body label,
+.modal-body input[type=text],
+.modal-body select,
+.modal-body textarea {
 	display: block;
 	margin-top: 7px;
 	margin-bottom: 7px;
