@@ -17,5 +17,6 @@ function($scope, cardboardService, modalService) {
 		});
 	}
 	
+	$scope.search = null;
 	$scope.cards = cardboardService.cards;
 }]);

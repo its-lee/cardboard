@@ -4,9 +4,6 @@
 	<!--
 			Put something on the Home tab (filter card-board by search)
 			
-			Cards-table:
-				Search by card name.
-			
 			Draw:
 				'Draw x random cards from this deck'
 			
@@ -186,17 +183,24 @@ nav.navbar {
 			
 			<div class="tab-content">
 				
-				<div id="home"></div>
+				<div id="home">
+					
+				</div>
 				
 				<div ng-controller="cards" class="table-tab tab-pane fade in" id="cards">
-					<button class="btn btn-primary" ng-click="hideAll(true);">Hide All</button>
-					<button class="btn btn-primary" ng-click="hideAll(false);">Show All</button>
+					<form class="navbar-form navbar-left">
+						<div class="form-group">
+							<input type="text" class="form-control" ng-model="search" placeholder="Search By Title..">
+						</div>
+						<button class="btn btn-primary" ng-click="hideAll(true);">Hide All</button>
+						<button class="btn btn-primary" ng-click="hideAll(false);">Show All</button>
+					</form>
 					<table class="table">
 						<tr>
 							<th>Title</th>
 							<th>Hidden?</th>
 						</tr>
-						<tr ng-repeat="c in cards">
+						<tr ng-repeat="c in cards | filter :{ title: search }">
 							<td>{{ c.title }}</td>
 							<td>
 								<input type="checkbox" ng-model="c.hidden" ng-change="onHideChange(c);"></input>
