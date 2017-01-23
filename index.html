@@ -11,9 +11,6 @@
 			
 			Allow import/export.
 			
-			favicon
-			app icon in header.
-			
 			Show/Hide all in decks.
 			Filter by deck/decks.
 			
@@ -33,14 +30,9 @@
 	<meta name="author" content="Cygnut">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!--
-	<link rel="shortcut icon" href="img/content/roteIcon-64x64-Transparent.png" />
-	-->
-	<!--
-	<link href="vendor/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
-	-->
+	<link rel="shortcut icon" href="img/layout/cardboardIcon-64x64-Transparent.png" />
 	
-		<!-- Angular & linked Bootstrap libs -->
+	<!-- Angular & linked Bootstrap libs -->
 	<script src="vendor/underscore-1.8.3.js"></script>
 	<script src="vendor/jquery-3.1.1.min.js"></script>
 	<script src="vendor/jquery-ui-1.12.1/jquery-ui.js"></script>
@@ -126,6 +118,10 @@ nav.navbar {
 	opacity: 0.85;
 }
 
+.navbar-brand {
+	padding: 8px;
+}
+
 .context-menu-root {
 	z-index: 2000;	/* Ensure not overlapped by cards. */
 }
@@ -168,6 +164,9 @@ nav.navbar {
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section">
 				<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
 			</button>
+		<a class="navbar-brand" href="#">
+			<img alt="cardboard" src="img/layout/cardboardIcon-64x64-Transparent.png" width="32" height="32">
+		</a>
 		</div>
 		
 		<div class="navbar-collapse collapse" id="navbar-collapse-section">
