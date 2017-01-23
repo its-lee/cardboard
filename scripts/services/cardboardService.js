@@ -161,16 +161,16 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 			{ title: "Joker", content: "Teleport to the Devil/Angel Room." }
 		];
 		
-		for (var i=0; i<previewCards.length; ++i) {
+		_.each(previewCards, function(card, index) {
 			this.addCard({
-				left: i * 20, 
-				top: i * 20, 
+				left: index * 20, 
+				top: index * 20, 
 				hidden: false, 
-				title: previewCards[i].title,
-				content: previewCards[i].content,
+				title: card.title,
+				content: card.content,
 				deck_id: previewDeckId
 			});
-		}
+		}, this);
 	}
 	
 }]);
