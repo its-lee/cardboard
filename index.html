@@ -161,7 +161,7 @@ nav.navbar {
 
 .tab-pane button {
 	margin: 5px 0 5px 0;
-	float: right;
+	/*float: right;*/
 }
 
 .table-tab {
@@ -196,6 +196,8 @@ nav.navbar {
 				<div id="home"></div>
 				
 				<div ng-controller="cards" class="table-tab tab-pane fade in" id="cards">
+					<button class="btn btn-primary" ng-click="hideAll(true);">Hide All</button>
+					<button class="btn btn-primary" ng-click="hideAll(false);">Show All</button>
 					<table class="table">
 						<tr>
 							<th>Title</th>
@@ -203,12 +205,15 @@ nav.navbar {
 						</tr>
 						<tr ng-repeat="c in cards">
 							<td>{{ c.title }}</td>
-							<td>{{ c.hidden }}</td>
+							<td>
+								<input type="checkbox" ng-model="c.hidden" ng-change="onHideChange(c);"></input>
+							</td>
 						</tr>
 					</table>
 				</div>
 				
 				<div ng-controller="decks" class="table-tab tab-pane fade in" id="decks">
+					<button class="btn btn-primary" ng-click="addDeck();">Add New Deck</button>
 					<table class="table">
 						<tr>
 							<th>Name</th>
@@ -219,7 +224,6 @@ nav.navbar {
 							<td>{{ d.description }}</td>
 						</tr>
 					</table>
-					<button class="btn btn-primary" ng-click="addDeck();">Add New Deck</button>
 				</div>
 				
 			</div>

@@ -25,6 +25,10 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 		return _.findIndex(col, function(c) { return c.id === id; });
 	}
 	
+	function getOptional(v, def) {
+		return v !== undefined ? v : def;
+	}
+	
 	/*
 		Decks:
 	*/
@@ -59,8 +63,8 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 		var d = findById(this.decks, args.id);
 		if (d)
 		{
-			d.name = args.name || d.name;
-			d.description = args.description || d.description;
+			d.name = getOptional(args.name, d.name);
+			d.description = getOptional(args.description, d.description);
 		}
 		
 		this.save();
@@ -100,23 +104,23 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 		Cards:
 	*/
 	
-	// args = { id, left, top, title, content }
+	// args = { id, left, top, hidden, title, content }
 	this.updateCard = function(args) {
 		var c = findById(this.cards, args.id);
 		if (c)
 		{
-			c.left = args.left || c.left;
-			c.top = args.top || c.top;
-			c.hidden = args.hidden || c.hidden;
-			c.title = args.title || c.title;
-			c.content = args.content || c.content;
-			c.deck_id = args.deck_id || c.deck_id;
+			c.left = getOptional(args.left, c.left);
+			c.top = getOptional(args.top, c.top);
+			c.hidden = getOptional(args.hidden, c.hidden);
+			c.title = getOptional(args.title, c.title);
+			c.content = getOptional(args.content, c.content);
+			c.deck_id = getOptional(args.deck_id, c.deck_id);
 		}
 		
 		this.save();
 	}
 	
-	// args = { left, top, title, content }
+	// args = { left, top, hidden, title, content }
 	this.addCard = function(args) {
 		var newId = findMaxId(this.cards) + 1;
 		
