@@ -5,7 +5,7 @@
 			Put something on the Home tab (filter card-board by search)
 			
 			Decks:
-				Per deck: Show/Hide all cards in that deck.
+				Tidy up deck table.
 			
 			Cards-table:
 				Search by card name.
@@ -147,10 +147,6 @@ nav.navbar {
 	margin-bottom: 5px;
 }
 
-.editable-tr {
-	cursor: pointer;
-}
-
 .tab-pane button {
 	margin: 5px 0 5px 0;
 	/*float: right;*/
@@ -213,10 +209,16 @@ nav.navbar {
 						<tr>
 							<th>Name</th>
 							<th>Description</th>
+							<th></th>
+							<th></th>
+							<th></th>
 						</tr>
-						<tr ng-repeat="d in decks" ng-click="editDeck(d);" class="editable-tr">
+						<tr ng-repeat="d in decks">
 							<td>{{ d.name }}</td>
 							<td>{{ d.description }}</td>
+							<td><button class="btn btn-primary" ng-click="editDeck(d);">Edit</button></td>
+							<td><button class="btn" ng-click="hideAll(d, true);">Hide All</button></td>
+							<td><button class="btn" ng-click="hideAll(d, false);">Show All</button></td>
 						</tr>
 					</table>
 				</div>

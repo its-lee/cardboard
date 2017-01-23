@@ -33,5 +33,14 @@ function($scope, cardboardService, modalService) {
 		});
 	}
 	
+	$scope.hideAll = function(d, hide) {
+		_.each(cardboardService.getCardsInDeck(d.id), function(c) {
+			cardboardService.updateCard({
+				id: c.id,
+				hidden: hide
+			});
+		});
+	}
+	
 	$scope.decks = cardboardService.decks;
 }]);
