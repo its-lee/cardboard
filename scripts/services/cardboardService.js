@@ -3,9 +3,10 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 	/* 
 		Initialisation: 
 	*/
+	var firstUse = !localStorageService.get('cardboard');
 	this.cardboard = localStorageService.get('cardboard') || {};
-	this.cards = this.cardboard.cards || [];
-	this.decks = this.cardboard.decks || [];
+	this.cards = (this.cardboard.cards = this.cardboard.cards || []);
+	this.decks = (this.cardboard.decks = this.cardboard.decks || []);
 	
 	// private:
 	this.save = function() {
@@ -143,6 +144,35 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 		if (idx >= 0) this.cards.splice(idx, 1);
 		this.save();
 	}
+	
+	
+	
+	/*
+		Preview cards:
+	*/
+	if (firstUse) {
+		var previewDeckId = this.addDeck({ name: "Preview Deck", description: "A preview deck to play with." });
+		
+		var previewCards = [
+			{ title: "Damage Up!", content: "+5 to damage." },
+			{ title: "Boop!", content: "A friendly squid was not so friendly; lose a turn." },
+			{ title: "McHammer", content: "Play for invincibility for a single turn." },
+			{ title: "Super Munchkin", content: "You may equip two classes, or one with none of the negatives." },
+			{ title: "Joker", content: "Teleport to the Devil/Angel Room." }
+		];
+		
+		for (var i=0; i<previewCards.length; ++i) {
+			this.addCard({
+				left: i * 20, 
+				top: i * 20, 
+				hidden: false, 
+				title: previewCards[i].title,
+				content: previewCards[i].content,
+				deck_id: previewDeckId
+			});
+		}
+	}
+	
 }]);
 
 /*

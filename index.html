@@ -2,19 +2,21 @@
 <html>
 <head>
 	<!--
-			Show all decks.
-			Filter by decks.
-			Search by card name.
-			'Draw x random cards from this deck'
+			Decks:
+				Per deck: Show/Hide all cards in that deck.
+			
+			Cards-table:
+				Search by card name.
+			
+			Draw:
+				'Draw x random cards from this deck'
 			
 			Style cards.
 			
-			Allow import/export.
+			Import/Export:
+				Allow import/export.
 			
-			Show/Hide all in decks.
-			Filter by deck/decks.
-			
-			Issue where add context menu  then don't left click leads it to still show an add context if click on a card (i.e. different z-index)
+			Issue where add context menu then don't left click leads it to still show an add context if click on a card (i.e. different z-index)
 				maybe just have a button to add a card instead!
 			
 			Tidy up all header elements!
@@ -256,7 +258,7 @@ nav.navbar {
 			}"
 			ng-click="cardClick(c);"
 			>
-			<h1>{{ c.title }}</h1>
+			<strong>{{ c.title }}</strong>
 			<hr/>
 			<p>{{ c.content }}</p>
 		</div>
