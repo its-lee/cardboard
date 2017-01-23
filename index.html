@@ -2,36 +2,25 @@
 <html>
 <head>
 	<!--
-		shortcut icon
-			
-			Fixed height for decks ui. Scrollable.
-			Card table ui.
-			Hide/Show cards.
-			
-			Filter by deck/decks.
-			
-			Scrollable deck pane when too big.
-			
-			Issue where add context menu  then don't left click leads it to still show an add context if click on a card (i.e. different z-index)
-				maybe just have a button to add a card instead!
-			
 			Show all decks.
-			
 			Filter by decks.
 			Search by card name.
 			'Draw x random cards from this deck'
-			
-			Add card at position clicked.
 			
 			Style cards.
 			
 			Allow import/export.
 			
-			Style top bar for adding, etc
-			Tidy up all header elements!
+			favicon
+			app icon in header.
 			
-			Only show ui panel for:
-				adding, editing and deleting cards WHEN edit mode on.
+			Show/Hide all in decks.
+			Filter by deck/decks.
+			
+			Issue where add context menu  then don't left click leads it to still show an add context if click on a card (i.e. different z-index)
+				maybe just have a button to add a card instead!
+			
+			Tidy up all header elements!
 			
 			Use http://www.bootstraptoggle.com/ ?
 	-->
@@ -258,7 +247,7 @@ nav.navbar {
 			draggable="true" 
 			on-move-stop="onMoveStop(attrs, left, top)" 
 			class="card" 
-			ng-repeat="c in cards"
+			ng-repeat="c in cards | filter : { hidden: false }"
 			ng-style="{
 				left: c.left,
 				top: c.top
