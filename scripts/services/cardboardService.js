@@ -107,6 +107,7 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 		{
 			c.left = args.left || c.left;
 			c.top = args.top || c.top;
+			c.hidden = args.hidden || c.hidden;
 			c.title = args.title || c.title;
 			c.content = args.content || c.content;
 			c.deck_id = args.deck_id || c.deck_id;
@@ -121,8 +122,9 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 		
 		this.cards.push({
 			id: newId,
-			top: args.top,
 			left: args.left,
+			top: args.top,
+			hidden: args.hidden,
 			title: args.title,
 			content: args.content,
 			deck_id: args.deck_id
@@ -165,7 +167,8 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 				left: 10,
 				top: 10,
 				title: "card1",
-				content: "card1-content"
+				content: "card1-content",
+				hidden: false
 			},
 			{
 				id: 2,
@@ -173,7 +176,8 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 				left: 50,
 				top: 10,
 				title: "card2",
-				content: "card2-content"
+				content: "card2-content",
+				hidden: false
 			},
 			{
 				id: 3,
@@ -181,7 +185,8 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 				left: 40,
 				top: 30,
 				title: "card3",
-				content: "card3-content"
+				content: "card3-content",
+				hidden: false
 			}
 		];
 	}

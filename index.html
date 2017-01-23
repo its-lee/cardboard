@@ -67,10 +67,12 @@
 	<script src="scripts/services/modalService.js"></script>
 	<script src="scripts/directives/draggable.js"></script>
 	<script src="scripts/directives/contextMenu.js"></script>
+	<script src="scripts/controllers/cards-board.js"></script>
 	<script src="scripts/controllers/cards.js"></script>
 	<script src="scripts/controllers/decks.js"></script>
 	
 	<link rel="stylesheet" href="vendor/jquery-contextmenu-2.4.2/jquery.contextMenu.css"/>
+	<link rel="stylesheet" href="vendor/font-awesome-4.7.0/css/font-awesome.css"/>
 	<link rel="stylesheet" href="vendor/bootstrap-3.3.7/css/bootstrap.css"/>
 	
 <script>
@@ -135,8 +137,12 @@ nav.navbar {
 	opacity: 0.85;
 }
 
+.context-menu-root {
+	z-index: 2000;	/* Ensure not overlapped by cards. */
+}
+
 .modal-dialog {
-	z-index: 2000;	/* Ensure on a layer above cards & the nav */
+	z-index: 2000;	/* Ensure on a layer above cards & the nav. */
 }
 
 .modal-body label, .modal-body input, .modal-body select, .modal-body textarea{
@@ -158,14 +164,14 @@ nav.navbar {
 	float: right;
 }
 
-#decks {
-	height: 200px;
+.table-tab {
+	max-height: 200px;
 	overflow: auto;
 }
 
 </style>
 </head>
-<body ng-app="cardboard" ng-controller="cards">
+<body ng-app="cardboard">
 
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
@@ -180,6 +186,7 @@ nav.navbar {
 			<div>
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+					<li><a data-toggle="tab" href="#cards">Cards</a></li>
 					<li><a data-toggle="tab" href="#decks">Decks</a></li>
 				</ul>
 			</div>
@@ -188,7 +195,20 @@ nav.navbar {
 				
 				<div id="home"></div>
 				
-				<div ng-controller="decks" class="tab-pane fade in" id="decks">
+				<div ng-controller="cards" class="table-tab tab-pane fade in" id="cards">
+					<table class="table">
+						<tr>
+							<th>Title</th>
+							<th>Hidden?</th>
+						</tr>
+						<tr ng-repeat="c in cards">
+							<td>{{ c.title }}</td>
+							<td>{{ c.hidden }}</td>
+						</tr>
+					</table>
+				</div>
+				
+				<div ng-controller="decks" class="table-tab tab-pane fade in" id="decks">
 					<table class="table">
 						<tr>
 							<th>Name</th>
@@ -207,12 +227,12 @@ nav.navbar {
 	</div>
 </nav>
 
-<div class="container-fluid board-container">
+<div ng-controller="cards-board" class="container-fluid board-container">
 	
 	<context-menu
 		selector="#board"
 		items='{
-			"add": { "name": "Add", "icon": "add" }
+			"add": { "name": "Add", "icon": "fa-plus" }
 		}'
 		on-context-click="onContextClick(option, id)"
 		/>
@@ -220,8 +240,9 @@ nav.navbar {
 	<context-menu
 		selector=".card"
 		items='{
-			"edit": { "name": "Edit", "icon": "edit" },
-			"delete": { "name": "Delete", "icon": "delete" }
+			"hide": { "name": "Hide", "icon": "fa-eye-slash" },
+			"edit": { "name": "Edit", "icon": "fa-edit" },
+			"delete": { "name": "Delete", "icon": "fa-remove" }
 		}'
 		on-context-click="onContextClick(option, id)"
 		/>
