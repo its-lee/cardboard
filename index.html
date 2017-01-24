@@ -308,11 +308,11 @@ nav.navbar {
 			}"
 			ng-click="cardClick(c);"
 			>
-			<div class="card-title">
+			<div title="{{ c.title }}" class="card-title">
 				<strong>{{ c.title }}</strong>
 			</div>
 			<hr/>
-			<div class="card-body">
+			<div title="{{ c.content }}" class="card-body">
 				<p>{{ c.content }}</p>
 			</div>
 		</div>
