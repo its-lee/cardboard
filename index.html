@@ -7,9 +7,6 @@
 			Draw:
 				'Show x random cards from this deck'
 			
-			Style cards.
-				Show full text on hover.
-			
 			Import/Export:
 				Allow import/export.
 			
@@ -225,7 +222,7 @@ nav.navbar {
 				<div ng-controller="cards" class="table-tab tab-pane fade in" id="cards">
 					<form class="navbar-form navbar-left">
 						<div class="form-group">
-							<input type="text" class="form-control" ng-model="search" placeholder="Search By Title..">
+							<input type="text" class="form-control" ng-model="cardsTable.search" placeholder="Search By Title..">
 						</div>
 						<button class="btn btn-primary" ng-click="hideAll(true);">Hide All</button>
 						<button class="btn btn-primary" ng-click="hideAll(false);">Show All</button>
@@ -235,7 +232,7 @@ nav.navbar {
 							<th>Title</th>
 							<th>Hidden?</th>
 						</tr>
-						<tr ng-repeat="c in cards | filter :{ title: search }">
+						<tr ng-repeat="c in cardsTable.cards | filter :{ title: cardsTable.search }">
 							<td>{{ c.title }}</td>
 							<td>
 								<input type="checkbox" ng-model="c.hidden" ng-change="onHideChange(c);"></input>

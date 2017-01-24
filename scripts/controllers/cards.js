@@ -9,7 +9,7 @@ function($scope, cardboardService, modalService) {
 	}
 	
 	$scope.hideAll = function(hide) {
-		_.each($scope.cards, function(c) {
+		_.each($scope.cardsTable.cards, function(c) {
 			cardboardService.updateCard({
 				id: c.id,
 				hidden: hide
@@ -17,6 +17,8 @@ function($scope, cardboardService, modalService) {
 		});
 	}
 	
-	$scope.search = null;
-	$scope.cards = cardboardService.cards;
+	$scope.cardsTable = {
+		search: '',
+		cards: cardboardService.cards
+	};
 }]);
