@@ -39,11 +39,11 @@ function($scope, cardboardService, modalService) {
 		});
 	}
 	
-	$scope.hideAll = function(d, hide) {
+	$scope.showAll = function(d, visible) {
 		_.each(cardboardService.getCardsInDeck(d.id), function(c) {
 			cardboardService.updateCard({
 				id: c.id,
-				hidden: hide
+				visible: visible
 			});
 		});
 	}

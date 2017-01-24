@@ -1,18 +1,18 @@
 angular.module('cardboard').controller('cards', ['$scope', 'cardboardService', 'modalService', 
 function($scope, cardboardService, modalService) {
 	
-	$scope.onHideChange = function(c) {
+	$scope.onVisibleChange = function(c) {
 		cardboardService.updateCard({
 			id: c.id,
-			hidden: c.hidden
+			visible: c.visible
 		});
 	}
 	
-	$scope.hideAll = function(hide) {
+	$scope.showAll = function(visible) {
 		_.each($scope.cardsTable.cards, function(c) {
 			cardboardService.updateCard({
 				id: c.id,
-				hidden: hide
+				visible: visible
 			});
 		});
 	}

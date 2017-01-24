@@ -105,14 +105,14 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 		Cards:
 	*/
 	
-	// args = { id, left, top, hidden, title, content }
+	// args = { id, left, top, visible, title, content }
 	this.updateCard = function(args) {
 		var c = findById(this.cards, args.id);
 		if (c)
 		{
 			c.left = getOptional(args.left, c.left);
 			c.top = getOptional(args.top, c.top);
-			c.hidden = getOptional(args.hidden, c.hidden);
+			c.visible = getOptional(args.visible, c.visible);
 			c.title = getOptional(args.title, c.title);
 			c.content = getOptional(args.content, c.content);
 			c.deck_id = getOptional(args.deck_id, c.deck_id);
@@ -121,7 +121,7 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 		this.save();
 	}
 	
-	// args = { left, top, hidden, title, content }
+	// args = { left, top, visible, title, content }
 	this.addCard = function(args) {
 		var newId = findMaxId(this.cards) + 1;
 		
@@ -129,7 +129,7 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 			id: newId,
 			left: args.left,
 			top: args.top,
-			hidden: args.hidden,
+			visible: args.visible,
 			title: args.title,
 			content: args.content,
 			deck_id: args.deck_id
@@ -165,7 +165,7 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 			this.addCard({
 				left: index * 20, 
 				top: index * 20, 
-				hidden: false, 
+				visible: true, 
 				title: card.title,
 				content: card.content,
 				deck_id: previewDeckId
@@ -202,7 +202,7 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 				top: 10,
 				title: "card1",
 				content: "card1-content",
-				hidden: false
+				visible: true
 			},
 			{
 				id: 2,
@@ -211,7 +211,7 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 				top: 10,
 				title: "card2",
 				content: "card2-content",
-				hidden: false
+				visible: true
 			},
 			{
 				id: 3,
@@ -220,7 +220,7 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 				top: 30,
 				title: "card3",
 				content: "card3-content",
-				hidden: false
+				visible: true
 			}
 		];
 	}

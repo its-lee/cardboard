@@ -7,6 +7,8 @@
 			Draw:
 				'Show x random cards from this deck'
 			
+			Better scrollbars for cards, etc
+			
 			Import/Export:
 				Allow import/export.
 			
@@ -53,7 +55,6 @@
 	<link rel="stylesheet" href="vendor/bootstrap-3.3.7/css/bootstrap.css"/>
 	
 <script>
-
 </script>
 <style>
 
@@ -224,18 +225,18 @@ nav.navbar {
 						<div class="form-group">
 							<input type="text" class="form-control" ng-model="cardsTable.search" placeholder="Search By Title..">
 						</div>
-						<button class="btn btn-primary" ng-click="hideAll(true);">Hide All</button>
-						<button class="btn btn-primary" ng-click="hideAll(false);">Show All</button>
+						<button class="btn btn-primary" ng-click="showAll(true);">Show All</button>
+						<button class="btn btn-primary" ng-click="showAll(false);">Hide All</button>
 					</form>
 					<table class="table">
 						<tr>
 							<th>Title</th>
-							<th>Hidden?</th>
+							<th>Visible?</th>
 						</tr>
-						<tr ng-repeat="c in cardsTable.cards | filter :{ title: cardsTable.search }">
+						<tr ng-repeat="c in cardsTable.cards | filter: { title: cardsTable.search }">
 							<td>{{ c.title }}</td>
 							<td>
-								<input type="checkbox" ng-model="c.hidden" ng-change="onHideChange(c);"></input>
+								<input type="checkbox" ng-model="c.visible" ng-change="onVisibleChange(c);"></input>
 							</td>
 						</tr>
 					</table>
@@ -257,8 +258,8 @@ nav.navbar {
 							<td>{{ d.description }}</td>
 							<td><button class="btn btn-primary" ng-click="editDeck(d);">Edit</button></td>
 							<td><button class="btn btn-danger" ng-click="deleteDeck(d);">Delete</button></td>
-							<td><button class="btn" ng-click="hideAll(d, true);">Hide All</button></td>
-							<td><button class="btn" ng-click="hideAll(d, false);">Show All</button></td>
+							<td><button class="btn" ng-click="showAll(d, true);">Show All</button></td>
+							<td><button class="btn" ng-click="showAll(d, false);">Hide All</button></td>
 						</tr>
 					</table>
 				</div>
@@ -295,7 +296,7 @@ nav.navbar {
 			draggable="true" 
 			on-move-stop="onMoveStop(attrs, left, top)" 
 			class="card" 
-			ng-repeat="c in cards | filter : { hidden: false }"
+			ng-repeat="c in cards | filter : { visible: true }"
 			ng-style="{
 				left: c.left,
 				top: c.top

@@ -14,7 +14,7 @@ function($scope, cardboardService, modalService) {
 			modalTitle: 'Add Card',
 			left: 30,
 			top: 100,
-			hidden: false,
+			visible: true,
 			decks: cardboardService.decks,
 			defaultDeck: cardboardService.defaultDeck,
 		})
@@ -39,7 +39,7 @@ function($scope, cardboardService, modalService) {
 			id: c.id,
 			left: c.left,
 			top: c.top,
-			hidden: false,
+			visible: true,
 			title: c.title,
 			content: c.content,
 			decks: cardboardService.decks,
@@ -58,7 +58,7 @@ function($scope, cardboardService, modalService) {
 		
 		cardboardService.updateCard({
 			id: id,
-			hidden: true
+			visible: false
 		});
 	}
 	
