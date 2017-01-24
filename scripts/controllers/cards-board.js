@@ -7,7 +7,7 @@ function($scope, cardboardService, modalService) {
 	
 	const modalTemplateUrl = 'partials/card-modal.html';
 	
-	function addCard() {
+	$scope.addCard = function() {
 		modalService.showModal({
 			templateUrl: modalTemplateUrl
 		}, {
@@ -89,7 +89,6 @@ function($scope, cardboardService, modalService) {
 		// that the model is being altered. We do this here.
 		$scope.$apply(function() {
 			switch (option) {
-				case "add": addCard(); break;
 				case "edit": editCard(id); break;
 				case "delete": deleteCard(id); break;
 				case "hide": hideCard(id); break;
@@ -97,5 +96,6 @@ function($scope, cardboardService, modalService) {
 		});
 	}
 	
+	$scope.search = '';
 	$scope.cards = cardboardService.cards;
 }]);

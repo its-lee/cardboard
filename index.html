@@ -2,21 +2,14 @@
 <html>
 <head>
 	<!--
-			Put something on the Home tab (filter card-board by search)
-			
 			Draw:
 				'Show x random cards from this deck'
-			
-			Better scrollbars for cards, etc
 			
 			Import/Export:
 				Allow import/export.
 			
-			Issue where add context menu then don't left click leads it to still show an add context if click on a card (i.e. different z-index)
-				maybe just have a button to add a card instead!
-			
 			Tidy up all header elements!
-			
+			Better scrollbars for cards, etc
 			Use http://www.bootstraptoggle.com/ ?
 	-->
 	
@@ -179,6 +172,10 @@ nav.navbar {
 	/*float: right;*/
 }
 
+#main {
+	/*margin-top: 15px;*/
+}
+
 .table-tab {
 	max-height: 200px;
 	overflow: auto;
@@ -191,7 +188,7 @@ nav.navbar {
 
 </style>
 </head>
-<body ng-app="cardboard">
+<body ng-app="cardboard" ng-controller="cards-board" >
 
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
@@ -208,7 +205,7 @@ nav.navbar {
 			
 			<div>
 				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+					<li class="active"><a data-toggle="tab" href="#main">Main</a></li>
 					<li><a data-toggle="tab" href="#cards">Cards</a></li>
 					<li><a data-toggle="tab" href="#decks">Decks</a></li>
 				</ul>
@@ -216,14 +213,19 @@ nav.navbar {
 			
 			<div class="tab-content">
 				
-				<div id="home">
-					
+				<div class="table-tab tab-pane fade in active" id="main">
+					<form class="navbar-form navbar-left">
+						<div class="form-group">
+							<input type="text" class="form-control" ng-model="search" placeholder="Filter Cards..">
+							<button class="btn btn-primary" ng-click="addCard();">&plus; Add New Card</button>
+						</div>
+					</form>
 				</div>
 				
 				<div ng-controller="cards" class="table-tab tab-pane fade in" id="cards">
 					<form class="navbar-form navbar-left">
 						<div class="form-group">
-							<input type="text" class="form-control" ng-model="cardsTable.search" placeholder="Search By Title..">
+							<input type="text" class="form-control" ng-model="cardsTable.search" placeholder="Filter By Title..">
 						</div>
 						<button class="btn btn-primary" ng-click="showAll(true);">Show All</button>
 						<button class="btn btn-primary" ng-click="showAll(false);">Hide All</button>
@@ -243,7 +245,12 @@ nav.navbar {
 				</div>
 				
 				<div ng-controller="decks" class="table-tab tab-pane fade in" id="decks">
-					<button class="btn btn-primary" ng-click="addDeck();">Add New Deck</button>
+					<form class="navbar-form navbar-left">
+						<div class="form-group">
+							<input type="text" class="form-control" ng-model="search" placeholder="Filter Decks..">
+							<button class="btn btn-primary" ng-click="addDeck();">&plus; Add New Deck</button>
+						</div>
+					</form>
 					<table class="table">
 						<tr>
 							<th>Name</th>
@@ -253,7 +260,7 @@ nav.navbar {
 							<th></th>
 							<th></th>
 						</tr>
-						<tr ng-repeat="d in decks">
+						<tr ng-repeat="d in decks | filter: search">
 							<td>{{ d.name }}</td>
 							<td>{{ d.description }}</td>
 							<td><button class="btn btn-primary" ng-click="editDeck(d);">Edit</button></td>
@@ -269,15 +276,7 @@ nav.navbar {
 	</div>
 </nav>
 
-<div ng-controller="cards-board" class="container-fluid board-container">
-	
-	<context-menu
-		selector="#board"
-		items='{
-			"add": { "name": "Add", "icon": "fa-plus" }
-		}'
-		on-context-click="onContextClick(option, id)"
-		/>
+<div class="container-fluid board-container">
 	
 	<context-menu
 		selector=".card"
@@ -296,7 +295,7 @@ nav.navbar {
 			draggable="true" 
 			on-move-stop="onMoveStop(attrs, left, top)" 
 			class="card" 
-			ng-repeat="c in cards | filter : { visible: true }"
+			ng-repeat="c in cards | filter: { visible: true } | filter: search"
 			ng-style="{
 				left: c.left,
 				top: c.top

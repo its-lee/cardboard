@@ -48,5 +48,6 @@ function($scope, cardboardService, modalService) {
 		});
 	}
 	
+	$scope.search = '';
 	$scope.decks = cardboardService.decks;
 }]);
