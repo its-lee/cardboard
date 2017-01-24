@@ -5,9 +5,10 @@
 			Put something on the Home tab (filter card-board by search)
 			
 			Draw:
-				'Draw x random cards from this deck'
+				'Show x random cards from this deck'
 			
 			Style cards.
+				Show full text on hover.
 			
 			Import/Export:
 				Allow import/export.
@@ -77,6 +78,8 @@ html, body {
 	height: 100%;
 }
 
+/* Card board */
+
 #board {
 	width: 98%;
 	height: 98%;
@@ -99,12 +102,44 @@ html, body {
 	border: solid;
 	border-radius: 10%;
 	
-	text-align: center
-	
-	/* Configurable by user. */
-	width: 100px;
-	height: 100px;
+	width: 150px;
+	height: 200px;
 }
+
+.card-title {
+	overflow: auto; 
+	text-align: center;
+	text-align-last: center;
+	text-overflow: ellipsis;
+	
+	box-sizing: border-box;
+	height: 25%;
+	padding-top: 10%;
+	padding-bottom: 10%;
+}
+
+.card hr {
+	box-sizing: border-box;
+	
+	height: 5%;
+	width: 80%;
+	
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.card-body {
+	overflow: auto; 
+	text-align: center;
+	text-align-last: center;
+	text-overflow: ellipsis;
+	
+	box-sizing: border-box;
+	
+	height: 70%;
+}
+
+/* Navbar */
 
 nav.navbar {
 	border-top-left-radius: 0;
@@ -273,9 +308,13 @@ nav.navbar {
 			}"
 			ng-click="cardClick(c);"
 			>
-			<strong>{{ c.title }}</strong>
+			<div class="card-title">
+				<strong>{{ c.title }}</strong>
+			</div>
 			<hr/>
-			<p>{{ c.content }}</p>
+			<div class="card-body">
+				<p>{{ c.content }}</p>
+			</div>
 		</div>
 	</div>
 </div>
