@@ -5,6 +5,7 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 	*/
 	var firstUse = !localStorageService.get('cardboard');
 	this.cardboard = localStorageService.get('cardboard') || {};
+	this.cardboard.version = "1";
 	this.cards = (this.cardboard.cards = this.cardboard.cards || []);
 	this.decks = (this.cardboard.decks = this.cardboard.decks || []);
 	
@@ -180,6 +181,7 @@ angular.module('cardboard').service('cardboardService', ['localStorageService', 
 	
 	cardboard = 
 	{
+		version: "1",
 		decks:
 		[
 			{

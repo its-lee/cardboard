@@ -5,6 +5,11 @@
 			Draw:
 				'Show x random cards from this deck'
 			
+			Export/Import:
+				Do import.
+			
+			Allow colouring of cards (for now, just be able to edit deck card colour)
+			
 			Import/Export:
 				Allow import/export.
 			
@@ -32,6 +37,7 @@
 	<script src="vendor/ui-bootstrap-tpls-2.4.0.js"></script>
 	<script src="vendor/bootstrap-3.3.7/js/bootstrap.js"/></script>
 	<script src="vendor/angular-local-storage-0.5.0.js"></script>
+	<script src="vendor/FileSaver.js"></script>
 	
 	<!-- Angular model -->
 	<script src="scripts/app.js"></script>
@@ -42,6 +48,7 @@
 	<script src="scripts/controllers/cards-board.js"></script>
 	<script src="scripts/controllers/cards.js"></script>
 	<script src="scripts/controllers/decks.js"></script>
+	<script src="scripts/controllers/xxport.js"></script>
 	
 	<link rel="stylesheet" href="vendor/jquery-contextmenu-2.4.2/jquery.contextMenu.css"/>
 	<link rel="stylesheet" href="vendor/font-awesome-4.7.0/css/font-awesome.css"/>
@@ -208,6 +215,7 @@ nav.navbar {
 					<li class="active"><a data-toggle="tab" href="#main">Main</a></li>
 					<li><a data-toggle="tab" href="#cards">Cards</a></li>
 					<li><a data-toggle="tab" href="#decks">Decks</a></li>
+					<li><a data-toggle="tab" href="#xxport">Import / Export</a></li>
 				</ul>
 			</div>
 			
@@ -269,6 +277,14 @@ nav.navbar {
 							<td><button class="btn" ng-click="showAll(d, false);">Hide All</button></td>
 						</tr>
 					</table>
+				</div>
+				
+				<div ng-controller="xxport" class="table-tab tab-pane fade in" id="xxport">
+					<form class="navbar-form navbar-left">
+						<div class="form-group">
+							<button class="btn btn-primary" ng-click="exportData();">Export</button>
+						</div>
+					</form>
 				</div>
 				
 			</div>
