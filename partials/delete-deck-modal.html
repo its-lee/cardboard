@@ -1,15 +1,15 @@
 <div class="modal-header">
-	<h3>Delete Card</h3>
+    <h3>Delete Card</h3>
 </div>
 <div class="modal-body" style="margin-bottom: 0">
-	<p>Are you sure you want to delete this card?</p>
-	<p ng-style="{ display: modalOptions.card_count === 0 ? 'none' : 'block' }">
-		This will also delete all {{ modalOptions.card_count }} card(s) in this deck.
-	</p>
+    <p>Are you sure you want to delete this card?</p>
+    <p ng-style="{ display: modalOptions.card_count === 0 ? 'none' : 'block' }">
+        This will also delete all {{ modalOptions.card_count }} card(s) in this deck.
+    </p>
 </div>
 <div class="modal-footer">
-	<button type="button" class="btn" 
-			data-ng-click="modalOptions.close()">Close</button>
-	<button class="btn btn-primary" 
-			data-ng-click="modalOptions.ok();">OK</button>
+    <button type="button" class="btn" 
+            data-ng-click="modalOptions.close()">Close</button>
+    <button class="btn btn-primary" 
+            data-ng-click="modalOptions.ok();">OK</button>
 </div>
