@@ -117,8 +117,8 @@
             // as long as the trigger happened on one of the trigger-element's child nodes
             reposition: true,
 
-	          //ability to select submenu
-	          selectableSubMenu: false,
+              //ability to select submenu
+              selectableSubMenu: false,
             
             // Default classname configuration to be able avoid conflicts in frameworks
             classNames : {
@@ -531,19 +531,19 @@
                 // If the trigger happen on a element that are above the contextmenu do this
                 if (opt.zIndex === undefined) {
                     opt.zIndex = 0;
-				}
+                }
                 var targetZIndex = 0;
                 var getZIndexOfTriggerTarget = function (target) {
-					if (target.style.zIndex !== '') {
-						targetZIndex = target.style.zIndex;
-					} else {
-						if (target.offsetParent !== null && target.offsetParent !== undefined) {
-							getZIndexOfTriggerTarget(target.offsetParent);
-						}
-						else if (target.parentElement !== null && target.parentElement !== undefined) {
-							getZIndexOfTriggerTarget(target.parentElement);
-						}
-					}
+                    if (target.style.zIndex !== '') {
+                        targetZIndex = target.style.zIndex;
+                    } else {
+                        if (target.offsetParent !== null && target.offsetParent !== undefined) {
+                            getZIndexOfTriggerTarget(target.offsetParent);
+                        }
+                        else if (target.parentElement !== null && target.parentElement !== undefined) {
+                            getZIndexOfTriggerTarget(target.parentElement);
+                        }
+                    }
                 };
                 getZIndexOfTriggerTarget(e.target);
                 // If targetZIndex is heigher then opt.zIndex dont progress any futher.
@@ -551,7 +551,7 @@
                 // and its above the contextmenu it wont steal keys events
                 if (targetZIndex > opt.zIndex) {
                     return;
-				}
+                }
                 switch (e.keyCode) {
                     case 9:
                     case 38: // up
@@ -1468,8 +1468,8 @@
                             (console.error || console.log).call(console, 'When you reject a promise, provide an "items" object, equal to normal sub-menu items');
                         }
                     } else if(typeof errorItem === 'string'){
-						            errorItem = { "error": { name: errorItem } };
-					          }
+                                    errorItem = { "error": { name: errorItem } };
+                              }
                     finishPromiseProcess(opt,root,errorItem);
                 }
                 function finishPromiseProcess(opt,root,items) {
