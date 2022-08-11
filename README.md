@@ -2,4 +2,4 @@
 # cardboard
 Card game prototyping workspace using Angular & Bootstrap.
 
-Hosted at https://cygnut.github.io/cardboard/
+Hosted at https://its-lee.github.io/cardboard/
